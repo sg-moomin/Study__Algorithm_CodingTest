@@ -23,5 +23,5 @@ def solution(board, moves):
             countNumber -= 2
 
 
-    
+
     return answer
