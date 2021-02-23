@@ -1,0 +1,72 @@
+# 1번 방법
+# import math
+# def solution(numbers):
+#     number = list(numbers)
+#     number.sort(reverse = True)
+#     result = []
+#     checkList = True
+#     count = 1
+#     while count <= len(number):
+#         if checkList == False:
+#             tmp = number[0]
+#             number = number[1:]
+#             number.append(tmp)
+#             count += 1
+#             checkList = True
+#         else:
+#             for j in range(1,len(number)+1):
+#                 result.append(''.join(number[:j]))
+#             checkList = False
+
+
+#     result = list(set(result))
+#     answer = []
+#     for i in range(len(result)):
+#         checkPoint = 0
+#         if int(result[i]) == 0 or int(result[i]) == 1:
+#             continue
+#         else:
+#             squrts = int(math.sqrt(int(result[i])))
+#             for j in range(2, squrts + 1):
+#                 if int(result[i]) % j == 0:
+#                     checkPoint += 1
+
+#             if checkPoint == 0:
+#                 answer.append(result[i])
+
+#     for i in range(len(answer)):
+#         if answer[i][0] == "0":
+#             answer[i] = answer[i][1:]
+#     return len(set(answer))
+
+# 정답코드
+from itertools import permutations
+import math
+def solution(numbers):
+    number = list(numbers)
+    numberResult = []
+    lenSize = len(numbers)
+    result = []
+    for i in range(len(number)):
+        numberResult.extend(list(map(''.join, permutations(number, lenSize - i))))
+
+    result = list(set(numberResult))
+    answer = []
+    for i in range(len(result)):
+        checkPoint = 0
+        if int(result[i]) == 0 or int(result[i]) == 1:
+            continue
+        else:
+            squrts = int(math.sqrt(int(result[i])))
+            for j in range(2, squrts + 1):
+                if int(result[i]) % j == 0:
+                    checkPoint += 1
+
+            if checkPoint == 0:
+                answer.append(result[i])
+
+    answerText = []
+    for i in answer:
+        answerText.append(int(i))
+
+    return len(set(answerText))
