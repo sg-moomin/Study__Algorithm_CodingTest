@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;backjoon.BFS_DFS&apos; to &apos;DFS&apos;&#x0D;&#x0A;- Original project: &apos;backjoon&apos;&#x0D;&#x0A;- Original element: &apos;backjoon.BFS_DFS&apos;&#x0D;&#x0A;- Renamed element: &apos;backjoon.DFS&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;BFS_DFS&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;backjoon{BFS_DFS.java[BFS_DFS" matchStrategy="1" name="DFS" qualified="false" references="true" similarDeclarations="false" stamp="1631456896509" textual="false" version="1.0"/>
+</session>

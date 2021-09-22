@@ -1,0 +1,14 @@
+package backjoon;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+
+
+public class backjoon_2252 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

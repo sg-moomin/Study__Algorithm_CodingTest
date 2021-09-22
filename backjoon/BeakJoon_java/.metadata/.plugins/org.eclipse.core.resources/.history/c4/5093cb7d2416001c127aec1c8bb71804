@@ -1,0 +1,49 @@
+package backjoon;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+public class backjoon_1516 {
+
+	public static void main(String[] args) throws IOException {
+		
+		//
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		StringTokenizer st;
+		st = new StringTokenizer(reader.readLine());
+		int n = Integer.parseInt(reader.readLine());
+//		int n = Integer.parseInt(st.nextToken());
+//		int m = Integer.parseInt(st.nextToken());
+
+		int[] degree = new int[n];
+		int[] indexValue = new int[n];
+		ArrayList<ArrayList<Integer>> sortList = new ArrayList<>();
+		
+		for(int i = 0; i < n; i++) {
+			st = new StringTokenizer(reader.readLine());
+			indexValue[i] = Integer.parseInt(st.nextToken());
+			int m = Integer.parseInt(st.nextToken());
+			while(m != -1) {
+				degree[i]++;
+				sortList.get(m).add(i);
+				m = Integer.parseInt(st.nextToken());
+
+			}
+			
+			
+		}
+		
+	
+	}	
+	
+	
+//	ArrayList<ArrayList<Integer>> sortList = new ArrayList<>();
+}

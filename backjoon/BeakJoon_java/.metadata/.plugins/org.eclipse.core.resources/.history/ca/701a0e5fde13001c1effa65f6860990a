@@ -1,0 +1,79 @@
+package backjoon;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+
+// 위상정렬에서 DFS 방식보단 Qeueu를 쓰는 것이 효율적 
+public class backjoon_2252 {
+	static int n;
+	static int m;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		StringTokenizer st;
+		st = new StringTokenizer(reader.readLine());
+		
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		
+		
+		int[] degree = new int[n+1];
+		ArrayList<ArrayList<Integer>> sortList = new ArrayList<>();
+		
+		for(int i = 0; i < n + 1; i++) {
+			sortList.add(new ArrayList<Integer>()); 
+		}
+		
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(reader.readLine());
+			int lNum = Integer.parseInt(st.nextToken());
+			int rNum = Integer.parseInt(st.nextToken());
+			sortList.get(lNum).add(rNum);
+			degree[rNum]++;
+		}
+
+	
+		Queue<Integer> queue = new LinkedList<Integer>();
+		Queue<Integer> result = new LinkedList<Integer>();
+		
+		
+		// 자신을 가르키고 있는것이 없다면 추가한다.
+		for(int i = 1; i <= n; i++) {
+			if(degree[i] == 0) {
+				queue.add(i);
+			}
+		}
+		
+		int current;
+		while(!queue.isEmpty()) {
+			current = queue.poll();
+			result.add(current);
+			
+			for(int i : sortList.get(current)) {
+				degree[i]--;
+				
+				if(degree[i]==0) {
+					queue.add(i);
+				}
+				
+			}
+			
+		}
+	
+		while(!result.isEmpty()) {
+			System.out.println(result.poll()+ " ");
+		}
+	
+	
+	}
+}
