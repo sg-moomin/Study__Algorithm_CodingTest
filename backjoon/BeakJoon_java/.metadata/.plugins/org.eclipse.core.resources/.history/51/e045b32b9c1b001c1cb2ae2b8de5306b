@@ -1,0 +1,44 @@
+package backjoon;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+/**
+ * backjoon_1045 : 다리
+ * 
+ * A와 B를 양 끝점으로 하는 도로를 튜플로 나타낸다.
+ * 두 도로를 비교할 때 튜플이 작은 쪽의 우선순위가 더 높다. 
+ * 가장 높은 우선순위를 가지면서 모든 도시를 연결하는 도로 M개의 집합을 찾으면 된다는 것 
+ * 
+ *  
+ *  
+ * */
+
+public class backjoon_1045 {
+
+	public static void main(String[] args) throws IOException {
+
+		/* 변수 선언 */
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		StringTokenizer st;
+		int n = Integer.parseInt(reader.readLine());
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

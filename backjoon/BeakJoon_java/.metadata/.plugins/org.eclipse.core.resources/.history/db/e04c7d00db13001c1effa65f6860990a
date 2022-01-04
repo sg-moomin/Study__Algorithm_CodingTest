@@ -1,0 +1,65 @@
+package backjoon;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+
+// 위상정렬에서 DFS 방식보단 Qeueu를 쓰는 것이 효율적 
+public class backjoon_2252 {
+
+	public static int sortList[];
+	public static int visited[];
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		// 문자열 뛰어서 받기 위해서  StringTokenizer 사용
+		StringTokenizer st;
+		
+		int n = Integer.parseInt(reader.readLine());
+		int m = Integer.parseInt(reader.readLine());
+		
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(reader.readLine());
+			writer.write(Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken()));
+		}
+//		
+//		
+//		
+//		int n = Integer.parseInt(reader.readLine());
+//		
+//		int[] arrays = new int[n + 1];
+//		
+//		
+//		// M
+////		int M = Integer.parseInt(st.nextToken());
+////		int N = Integer.parseInt(st.nextToken());
+////		int numN;
+////		int numM;
+//		
+//		int number1 = reader.read();
+//		
+//		String[] line = reader.readLine().split(" ");
+//		int M = Integer.parseInt(line[0]);
+//		int N = Integer.parseInt(line[1]);
+//		System.out.println(line[0] + line[1]);
+//		
+//		writer.write(M + N);
+//		
+//		for(int i = 0; i < N; i++) {
+//			int Y = Integer.parseInt(line[i]);
+//			int Z = Integer.parseInt(line[0]);
+//			
+//		}
+//	
+//		
+//		
+		writer.flush();
+		writer.close();
+	}
+}

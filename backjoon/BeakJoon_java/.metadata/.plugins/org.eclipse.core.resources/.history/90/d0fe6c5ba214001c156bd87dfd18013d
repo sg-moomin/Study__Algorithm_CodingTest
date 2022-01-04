@@ -1,0 +1,106 @@
+package backjoon;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+
+/**
+ * [위상정렬]
+ * 그래프의 노드가 거스르지 않고 연결되어있는 그래프가 되도록 정렬하는 방식을 말함 
+ * DAG에만 적용이 가능한 정렬방식
+ * 요점 : 순서가 정해진 정렬을 말함(사이클이 발생하면 안됨)
+ * 방식 : Stack / Queue 2가지를 사용 가능 
+ * 주로 사용하는 방식 : Queue 방식
+ * 				-> 2차원 배열을 사용 
+ * 
+ * ex) 연결된 그래프가 3 - 1, 3 - 2 라고 가정하면
+ * 3은 1과 2가 연결되어 있기 때문에 2개의 진입차수(간선의 개수)를 가지고
+ * 1과 2는 0개의 진입차수를 가진다. 
+ * 그렇기 때문에 위상정렬에 따르면 진입차수가 0인 친구들부터 나열하고 진입차수가 0이상인 경우 0으로 하나씩 빼주면서 계산하면 된다.
+ * 
+ * >> 번외
+ * scanner보다 입출력 속도가 빠른 BufferedReader와 BufferedWriter로 입출력을 받는다. 
+ * StringTokenizer를 이용하여 문자열의 공백을 체크
+ * 
+ * >> 변수 
+ * degree : 진입차수를 위한 정수배열 
+ * sortList : 입력받은 노드들의 연결관계를 나타내기 위한 정수 ArrayList
+ * lNum과 rNum : n과 m값
+ * 
+ * */
+
+// 위상정렬에서 DFS 방식보단 Qeueu를 쓰는 것이 효율적 
+public class backjoon_2252 {
+	static int n;
+	static int m;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		StringTokenizer st;
+		st = new StringTokenizer(reader.readLine());
+		
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		
+		int[] degree = new int[n];
+		ArrayList<ArrayList<Integer>> sortList = new ArrayList<>();
+		
+		for(int i = 0; i < n; i++) {
+			sortList.add(new ArrayList<Integer>()); 
+		}
+		
+		// 연결하는 값에 간선들을 sortList와 degree에 표시해준다. 
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(reader.readLine());
+			int lNum = Integer.parseInt(st.nextToken());
+			int rNum = Integer.parseInt(st.nextToken());
+			sortList.get(lNum-1).add(rNum-1);
+			degree[rNum-1]++;
+		}
+
+	
+		Queue<Integer> queue = new LinkedList<Integer>();
+		Queue<Integer> result = new LinkedList<Integer>();
+		
+		
+		// 자신을 가르키고 있는것이 없다면 진입차수가 0이기 때문에 queue에 추가한다.
+		for(int i = 1; i <= n; i++) {
+			if(degree[i] == 0) {
+				queue.add(i);
+			}
+		}
+		
+		int current;
+		while(!queue.isEmpty()) {
+			// 하나씩 결과 큐에 값을 넣으면서 연결된 노드들을 탐방하고 진입차수가 0이되면 동일하게 Queue로 들어온다. 
+			current = queue.poll();
+			result.add(current);
+			
+			for(int i : sortList.get(current)) {
+				degree[i]--;
+				
+				if(degree[i]==0) {
+					queue.add(i);
+				}
+				
+			}
+			
+		}
+	
+		while(!result.isEmpty()) {
+			writer.write(result.poll()+ " ");
+		}
+		
+		writer.flush();
+		writer.close();
+	}
+}

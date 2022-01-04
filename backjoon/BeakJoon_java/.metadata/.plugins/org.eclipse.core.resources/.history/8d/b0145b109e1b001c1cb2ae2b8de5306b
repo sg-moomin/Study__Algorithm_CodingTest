@@ -1,0 +1,98 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.util.Collections;
+
+
+class TreeObj implements Comparable<TreeObj>{
+
+	int a, b, ans;
+
+	TreeObj(int a, int b, int ans){
+		this.a = a;
+		this.b = b;
+		this.ans = ans;
+	}
+
+	@Override
+	public int compareTo(TreeObj obj){
+		return ans - obj.ans;
+	}
+	
+}
+
+public class backjoon_1197{
+
+	static ArrayList<TreeObj> List;
+	static int[] parent;
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer StringToken;
+
+
+		StringToken = new StringTokenizer(reader.readLine());
+		int N = Integer.parseInt(StringToken.nextToken());
+		int M = Integer.parseInt(StringToken.nextToken());
+
+		List = new ArrayList<TreeObj>();
+		
+		for (int i = 0; i < M; i++){
+			StringToken = new StringTokenizer(reader.readLine());
+			int a = Integer.parseInt(StringToken.nextToken());
+			int b = Integer.parseInt(StringToken.nextToken());
+			int ans = Integer.parseInt(StringToken.nextToken());
+		
+			List.add(new TreeObj(a, b, ans));	
+		}
+
+		parent = new int[N+1];
+		for (int i = 1; i <= N; i++){
+			parent[i] = i;
+		} 
+
+        Collections.sort(List);
+        
+		int answer = 0;
+		for(TreeObj obj : List){
+			TreeObj tree = obj;
+
+			if(find(tree.a) != find(tree.b)){
+				answer += tree.ans;
+				union(tree.a, tree.b);
+			}
+			
+		}
+		
+		writer.write(answer + "\n");
+		writer.flush();
+		writer.close();
+		reader.close();
+		
+	}
+
+	public static int find(int answer){
+
+		if(parent[answer] == answer){
+			return answer;
+		} else {
+			return parent[answer] = find(parent[answer]); 
+		} 
+	}
+
+	public static void union(int front, int back){
+		front = find(front);
+		back = find(back);
+
+		if(front != back){
+			parent[back] = front;			
+		}
+	}
+
+	
+}
