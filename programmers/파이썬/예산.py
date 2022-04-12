@@ -1,6 +1,14 @@
-import itertools
+# 프로그래머스 > 예산
+# url : https://programmers.co.kr/learn/courses/30/lessons/12982
 
-pool = ['1','3','2','5','4']
-lists = list(map(''.join, itertools.permutations(pool)))
-print(lists)
-# print(int(lists[1][1]) + int(lists[1][2]))
+def solution(arr, bug):
+    arr = sorted(arr)
+    answer = 0
+    budgets = 0
+
+    for i in arr:
+        if (budgets + i) <= bug:
+            budgets = budgets + i
+            answer += 1
+
+    return answer
