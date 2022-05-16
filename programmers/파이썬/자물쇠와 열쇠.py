@@ -29,10 +29,10 @@ def solution(key, lock):
 
                 for a in range(lock_num):
                     for b in range(lock_num):
-                        if arrays[key_num+a][key_num+b] == 1:
+                        if arrays[key_num+a][key_num+b] != 1:
                             key_chk += 1
 
-                if key_chk == key_num ^ 2:
+                if key_chk == 0:
                     return True
 
                 for a in range(key_num):
