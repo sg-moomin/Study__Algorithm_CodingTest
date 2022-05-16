@@ -35,10 +35,6 @@ def solution(key, lock):
                 if key_chk == key_num ^ 2:
                     return True
 
-
-                if check_key(arrays, key, lock) == True:
-                    return True
-
                 for a in range(key_num):
                     for b in range(key_num):
                         arrays[j+a][z+b] -= key_rotate[a][b]
